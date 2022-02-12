@@ -9,7 +9,8 @@ repo_path = os.path.abspath(os.path.dirname(__name__))
 template_dir = os.path.join(
         repo_path,  'templates'  # location of front end pages
     )
-
+print(template_dir)
+print(repo_path)
 static_dir = os.path.join(
         repo_path,  'static'  # location of front end pages
     )
@@ -74,8 +75,12 @@ def Profile():
         if session["Id"]==i[0]:
             Datals=i
             break
-
     return render_template("profile.html",Data=Datals)
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login")
 
 # error handler to handle the error page
 @app.errorhandler(404)
